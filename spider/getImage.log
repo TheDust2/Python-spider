@@ -1332,3 +1332,12 @@
 2018-05-05 01:30:13,128 INFO     qzx11      Python 返回 URL:http://soso.nipic.com/?q=风景&k=2&page=2 数据成功
 2018-05-05 01:30:18,976 INFO     qzx11      Python 解析URL:http://soso.nipic.com/?q=风景&k=2&page=2 完成
 2018-05-05 01:30:19,056 INFO     qzx11      Python 下载 图片:F:\Creation\spider_downloadfile	humb_Image/0.jpg 成功
+2018-05-13 11:45:51,197 INFO     qzx11      Python 拼接 URL:soso.nipic.com/?q=风景&k=2&page=1 成功
+2018-05-13 11:45:51,213 INFO     qzx11      Python 拼接 URL:soso.nipic.com/?q=风景&k=2&page=2 成功
+2018-05-13 11:45:51,214 INFO     qzx11      Python 请求 URL:soso.nipic.com/?q=风景&k=2&page=1 
+2018-05-13 11:45:52,315 INFO     qzx11      Python 返回 URL:http://soso.nipic.com/?q=风景&k=2&page=1 数据成功
+2018-05-13 11:45:58,947 INFO     qzx11      Python 解析URL:http://soso.nipic.com/?q=风景&k=2&page=1 完成
+2018-05-13 11:45:58,947 INFO     qzx11      Python 请求 URL:soso.nipic.com/?q=风景&k=2&page=2 
+2018-05-13 11:45:59,803 INFO     qzx11      Python 返回 URL:http://soso.nipic.com/?q=风景&k=2&page=2 数据成功
+2018-05-13 11:46:06,424 INFO     qzx11      Python 解析URL:http://soso.nipic.com/?q=风景&k=2&page=2 完成
+2018-05-13 11:46:06,507 INFO     qzx11      Python 下载 图片:F:\Creation\spider_downloadfile	humb_Image/0.jpg 成功

@@ -1,4 +1,9 @@
 eclipse.preferences.version=1
+encoding//GUI/Demo.py=utf-8
+encoding//GUI/Demo2.py=utf-8
+encoding//Resources/db.py=utf-8
+encoding//Resources/login.py=utf-8
+encoding//Resources/stjy.py=utf-8
 encoding//spider/config_default.py=utf-8
 encoding//spider/database.py=utf-8
 encoding//spider/getImage.py=utf-8

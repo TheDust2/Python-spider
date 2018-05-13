@@ -202,12 +202,12 @@ def test():
             
 if __name__ == "__main__":
     spider = CrawNovel()
-    run_flag = 1
+    run_flag = 3
     if run_flag == 1:
         for url in spider.suburls:
             spider.getNovel(req_url_base+url)
     elif run_flag == 2:
         test()
     elif run_flag == 3:    
-        spider.getNovel(req_url_base+'/novel/tymyd','Horizon, Bright Moon, Sabre')
+        spider.getNovel(req_url_base+'/novel/seoul-stations-necromancer')
     pass
