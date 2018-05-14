@@ -26,7 +26,7 @@ class ParseRegulation:
         return downurl
         
     
-    def parseSCCNN(self, url, choice): 
+    def parseSCCNN(self, url, choice = GET_THUMB_IMG): 
         items = []
         self.log.info(u'Python 请求 URL:%s ' % url)
         url = u'http://' + urllib.pathname2url(url.encode('utf-8'))  #将带中文的url 转换为 %十六进制 形式
@@ -53,7 +53,7 @@ class ParseRegulation:
         else:
             return items     
          
-    def parse123RF(self, url, choice):
+    def parse123RF(self, url, choice = GET_THUMB_IMG):
         items = []
         self.log.info(u'Python 请求 URL:%s ' % url)
         url = u'http://' + url #123rf不需要将中文转化为16进制表示
@@ -77,7 +77,7 @@ class ParseRegulation:
         else:
             return items     
     
-    def parseNIPIC(self, url, choice):
+    def parseNIPIC(self, url, choice = GET_THUMB_IMG):
         items = []
         self.log.info(u'Python 请求 URL:%s ' % url)
         url = u'http://' + url #nipic不需要将中文转化为16进制表示

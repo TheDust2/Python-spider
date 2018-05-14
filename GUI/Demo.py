@@ -12,25 +12,27 @@ class AutoDownloader(object):
     def __init__(self, object):
         self.lb1=LabelFrame(object, width=200, height=160, text='选项')  
         self.lb1.grid(row=0,column=0,padx=10)  
-        self.colors =  ['图片', '论文', '小说']# 定义几个资源类型  
+        self.types =  ['图片', '论文', '小说']# 定义几个资源类型  
         
-        def radCall(self):  # 单选按钮回调函数,就是当单选按钮被点击会执行该函数  
+        def radCall():  # 单选按钮回调函数,就是当单选按钮被点击会执行该函数  
             radSel = self.radVar.get()  
             print radSel 
             
         self.radVar = IntVar()  # 通过IntVar() 获取单选按钮value参数对应的值  
-        self.radVar.set(99)  
+        self.radVar.set(0)  
         for col in range(3):  
-            curRad = Radiobutton(self.lb1, text=self.colors[col], variable=self.radVar,value=col,command=radCall)# 当该单选按钮被点击时，会触发参数command对应的函数  
+            curRad = Radiobutton(self.lb1, text=self.types[col], variable=self.radVar,value=col,command=radCall)# 当该单选按钮被点击时，会触发参数command对应的函数  
             curRad.place(x=0,y=col*35)  # 参数sticky对应的值参考复选框的解释      
     
         self.lb2 = LabelFrame(object, width=200, height=240, text='条件')  
         self.lb2.grid(row=1, column=0)  
         
+        self.var1 = StringVar()
+        self.var2 = StringVar()
         self.label1 = Label(self.lb2, text='主题：').place(x=0, y=0)
         self.label2 = Label(self.lb2, text='数量：').place(x=0, y=35)
-        self.input1 = Entry(self.lb2).place(x=40, y=0)
-        self.input2 = Entry(self.lb2).place(x=40, y=35)
+        self.input1 = Entry(self.lb2, textvariable=self.var1).place(x=40, y=0)
+        self.input2 = Entry(self.lb2, textvariable=self.var2).place(x=40, y=35)
         
         
         self.lb3 = LabelFrame(object, width=400, height=400, text='预览')  
@@ -55,7 +57,8 @@ class AutoDownloader(object):
         self.fr.grid(row=2, column=0,columnspan=2, pady=10)  
   
         def clickMe():  
-            print "click"
+            print '主题为：' + self.var1.get()
+            print '数量为：' + self.var2.get() 
         self.action1 = ttk.Button(self.fr, text="开始嗅探", command=clickMe)  # 创建一个按钮, text   
         self.action1.place(x=0,y=0) 
         
