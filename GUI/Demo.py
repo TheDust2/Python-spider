@@ -6,7 +6,7 @@ Created on 2018年5月13日
 @author: The Dust
 '''
 import ttk 
-from tkinter import *
+from Tkinter import *
 
 class AutoDownloader(object):
     def __init__(self, object):
