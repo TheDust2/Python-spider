@@ -65,11 +65,13 @@ class ParseRegulation:
                 item = image()
                 item.descrurl = tag.find_parent('a').attrs['href']  if tag != None else None
                 item.thumburl = tag.attrs['src']  if tag != None else None
+                item.name = tag.attrs['picid']
                 if(choice == GET_REAL_IMG):#需要获取原图则再次解析下载原图下载地址
                     item.downurl = 'restrict'
                     items.append(item)
                 else:
                     items.append(item)
+                item.show()
             self.log.info(u'Python 解析URL:%s 完成' % url)
         except:
             self.log.error(u'Python 解析 URL:%s 错误' % url)

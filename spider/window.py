@@ -9,8 +9,13 @@ import ttk
 from Tkinter import *
 import getImage
 from tkMessageBox import *
+
+
+
+
 class AutoDownloader(object):
     def __init__(self, object):
+        GI = getImage.GetImageInfo()
         self.lb1=LabelFrame(object, width=200, height=160, text='选项')  
         self.lb1.grid(row=0,column=0,padx=10)  
         self.types =  ['图片', '论文', '小说']# 定义几个资源类型  
@@ -34,28 +39,39 @@ class AutoDownloader(object):
         self.label2 = Label(self.lb2, text='数量：').place(x=0, y=35)
         self.input1 = Entry(self.lb2, textvariable=self.var1).place(x=40, y=0)
         self.input2 = Entry(self.lb2, textvariable=self.var2).place(x=40, y=35)
+        self.var1.set('美景')
+        self.var2.set('10')
         
-        
-        self.lb3 = LabelFrame(object, width=400, height=400, text='预览')  
+        self.lb3 = LabelFrame(object, width=400, height=400, text='提示信息窗口')  
         self.lb3.grid(row=0, column=1,rowspan=2)  
+        self.text = Text(self.lb3, width=380, height=380)
+        self.vsb =Scrollbar(self.lb3,width=400, orient="vertical",command=self.text.yview)  
+         
+        self.text.configure(yscrollcommand=self.vsb.set) 
+        self.text.place(x=10, y=0,width=370,height=370)
+        self.vsb.place(x=-5, y=0, height=370)
+#         global stdinfo 
+#         stdinfo =  self.text
+#         for i in range(40):
+#             stdinfo.insert(END, 'test\n')
         # Treeview  
-        self.tree = ttk.Treeview(self.lb3, selectmode='browse')  
-        self.vsb =Scrollbar(self.lb3,width=400, orient="vertical",command=self.tree.yview)  
-        self.tree.configure(yscrollcommand=self.vsb.set)  
-        self.vsb.place(x=-5, y=0, height=370)  
-        self.tree["columns"] = ("1", "2")  
-        self.tree['show'] = 'headings'  
-        self.tree.column("1", width=50, anchor='c')  
-        self.tree.column("2", width=250, anchor='c')  
-        self.tree.heading("1", text="Account")  
-        self.tree.heading("2", text="DescriptionUrl")  
-
-        self.tree.place(x=10, y=0,width=370,height=370)  
+#         self.tree = ttk.Treeview(self.lb3, selectmode='browse')  
+#         self.vsb =Scrollbar(self.lb3,width=400, orient="vertical",command=self.tree.yview)  
+#         self.tree.configure(yscrollcommand=self.vsb.set)  
+#         self.vsb.place(x=-5, y=0, height=370)  
+#         self.tree["columns"] = ("1", "2")  
+#         self.tree['show'] = 'headings'  
+#         self.tree.column("1", width=50, anchor='c')  
+#         self.tree.column("2", width=250, anchor='c')  
+#         self.tree.heading("1", text="Account")  
+#         self.tree.heading("2", text="DescriptionUrl")  
+#         self.tree.place(x=10, y=0,width=370,height=370)  
         
         self.fr=Frame(height = 40,width = 600)  
         self.fr.grid(row=2, column=0,columnspan=2, pady=10)  
   
         def Mysniffer():  
+            self.text.delete(0.0, END)
             thistitle = ''#主题
             num = 0 #数量
             if(self.var1.get() == ''):
@@ -67,24 +83,49 @@ class AutoDownloader(object):
             else:
                 num = self.var2.get()
                 
-            GI = getImage.GetImageInfo(title = thistitle,imageNum = num)
+            GI.setTitle(thistitle)
+            GI.setImageNum(num)
+            GI.spiderImg()
             
+            i = 1
+            for item in getImage.global_images:  
+                self.text.insert(END,'%-10d '%i+item.name+' 嗅探成功\n')
+                i+=1
             
-            for i in range(len(GI.items)):  
-                self.tree.insert("", 'end', text="L1", values=(i, GI.items[i].thumburl))  
-            
-            print u'主题为：' + thistitle
-            print u'数量为：' + num.__str__()
             pass 
             
         def Download():
+            GI.pipelines(getImage.global_images)
+            pass
+        def AutoDownload():
+            self.text.delete(0.0, END)
+            thistitle = ''#主题
+            num = 0 #数量
+            if(self.var1.get() == ''):
+                thistitle = u'美景'
+            else:
+                thistitle = self.var1.get()
+            if(self.var2.get() == ''):
+                num = 10
+            else:
+                num = self.var2.get()
+                
+            GI.setTitle(thistitle)
+            GI.setImageNum(num)
+            GI.spiderImg()
+            
+            i = 1
+            for item in getImage.global_images:  
+                self.text.insert(END,'%-10d '%i+item.name+' 下载成功\n')
+                i+=1
             pass
         
-        self.action1 = ttk.Button(self.fr, text="开始嗅探", command=Mysniffer)  # 创建一个按钮, text   
+        self.action1 = ttk.Button(self.fr, text="自动下载", command=AutoDownload)  # 创建一个按钮, text   
         self.action1.place(x=0,y=0) 
-        
-        self.action2 = ttk.Button(self.fr, text="全部下载", command=Download)  # 创建一个按钮, text   
-        self.action2.place(x=220,y=0) 
+        self.action2 = ttk.Button(self.fr, text="开始嗅探", command=Mysniffer)  # 创建一个按钮, text   
+        self.action2.place(x=120,y=0) 
+        self.action3 = ttk.Button(self.fr, text="全部下载", command=Download)  # 创建一个按钮, text   
+        self.action3.place(x=220,y=0) 
         
 def center_window(root, width, height):  
     screenwidth = root.winfo_screenwidth()  

@@ -6,7 +6,6 @@ Created on 2018年5月5日
 @author: The Dust
 '''
 import  requests
-import threading
 from bs4 import BeautifulSoup
 import re
 import os

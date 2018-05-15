@@ -9,7 +9,7 @@ Created on 2018年4月29日
 import logging
 import getpass
 import sys
-
+global i
 #### 定义MyLog类
 class MyLog(object):
 #### 类MyLog的构造函数
