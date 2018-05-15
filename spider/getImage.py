@@ -80,14 +80,20 @@ class GetImageInfo(object):
     
     def pipelines(self, items):
         name = ''
+        Exists = os.path.exists(os.getcwd()+'\Image')  
+        if not Exists:                   #判断是否存在文件夹如果不存在则创建为文件夹  
+            os.makedirs(os.getcwd()+'\Image')            #makedirs 创建文件时如果路径不存在会创建这个路径  
+            print "创建文件夹%s成功" % (os.getcwd()+'\Image')
+      
+        else:  
+            print "文件夹%s已存在" % (os.getcwd()+'\Image')
+        
         try:
             x = 0
             for item in items:
-                name = '\%d-%s.jpg' % (x , item.name)
-                print 'name = '+ name
-                
+                name = '.\Image\%d-%s.jpg' % (x , item.name)
                 f = urllib2.urlopen(item.thumburl) 
-                with open("test.jpg", "wb") as code:
+                with open(name, "wb") as code:
                     code.write(f.read())
                 x += 1
         except Exception as e:

@@ -114,6 +114,7 @@ class AutoDownloader(object):
             GI.setImageNum(num)
             GI.spiderImg()
             
+            GI.pipelines(getImage.global_images)
             i = 1
             for item in getImage.global_images:  
                 self.text.insert(END,'%-10d '%i+item.name+' 下载成功\n')
